@@ -5,7 +5,7 @@
 
 #define LC 3
 
-void printTable(char table[LC][LC]) //funÁ„o para imprimir tabela
+void printTable(char table[LC][LC]) //fun√ß√£o para imprimir tabela
 {   printf("\t   1 2 3\n");
     printf("\t  %c%c%c%c%c%c%c\n",218,196,194,196,194,196,191);
     printf("\t1 %c%c%c%c%c%c%c\n",179,table[0][0],179,table[0][1],179,table[0][2],179);
@@ -18,52 +18,52 @@ void printTable(char table[LC][LC]) //funÁ„o para imprimir tabela
 
 bool verifyWinner(char table[LC][LC], char *winner) //retorna true => fim de jogo / retorna falso => jogo continua
 {
-    //declaraÁ„o de vari·veis
+    //declara√ß√£o de vari√°veis
     char aux1, aux2, aux3;
 
-    //verificaÁ„o de fim de jogo por linha
+    //verifica√ß√£o de fim de jogo por linha
     for(int i = 0; i < LC; i++) {
-        //salva toda a linha i nas vari·veis auxiliares
+        //salva toda a linha i nas vari√°veis auxiliares
         aux1 = table[i][0];
         aux2 = table[i][1];
         aux3 = table[i][2];
 
-        //verifica se a linha inteira È igual e diferente de vazio, caso seja o jogador venceu
+        //verifica se a linha inteira √© igual e diferente de vazio, caso seja o jogador venceu
         if(aux1 == aux2 && aux2 == aux3 && aux1 == aux3 && aux1 != ' ') {
-            //vari·vel winner È salva com o valor do vencedor
+            //vari√°vel winner √© salva com o valor do vencedor
             *winner = aux1;
             return true;
         }
     }
 
-    //verificaÁ„o de fim de jogo por coluna
+    //verifica√ß√£o de fim de jogo por coluna
     for(int j = 0; j < LC; j++) {
-        //salva toda a coluna j nas vari·veis auxiliares
+        //salva toda a coluna j nas vari√°veis auxiliares
         aux1 = table[0][j];
         aux2 = table[1][j];
         aux3 = table[2][j];
-        //verifica se a coluna inteira È igual e diferente de vazio, caso seja o jogador venceu
+        //verifica se a coluna inteira √© igual e diferente de vazio, caso seja o jogador venceu
         if(aux1 == aux2 && aux2 == aux3 && aux1 == aux3 && aux1 != ' ') {
-            //vari·vel winner È salva com o valor do vencedor
+            //vari√°vel winner √© salva com o valor do vencedor
             *winner = aux1;
             return true;
         }
     }
 
-    //verifica se a diagonal 1 È inteira do mesmo valor e se È diferente de vazio, caso seja h· um vencedor
-    if(table[0][0] == table[1][1] && table[1][1] == table[2][2] && table[0][0] == table[2][2] && table[1][1] != ' ') { //verificaÁ„o diagonal 1
-            //vari·vel winner È salva com o valor do vencedor
+    //verifica se a diagonal 1 √© inteira do mesmo valor e se √© diferente de vazio, caso seja h√° um vencedor
+    if(table[0][0] == table[1][1] && table[1][1] == table[2][2] && table[0][0] == table[2][2] && table[1][1] != ' ') { //verifica√ß√£o diagonal 1
+            //vari√°vel winner √© salva com o valor do vencedor
             *winner = table[1][1];
             return true;
     }
-    //verifica se a diagonal 2 È inteira do mesmo valor e se È diferente de vazio, caso seja h· um vencedor
-    if(table[2][0] == table[1][1] && table[0][2] == table[1][1] && table[0][2] == table[2][0] && table[1][1] != ' ') { //verificaÁ„o diagonal 2
-            //vari·vel winner È salva com o valor do vencedor
+    //verifica se a diagonal 2 √© inteira do mesmo valor e se √© diferente de vazio, caso seja h√° um vencedor
+    if(table[2][0] == table[1][1] && table[0][2] == table[1][1] && table[0][2] == table[2][0] && table[1][1] != ' ') { //verifica√ß√£o diagonal 2
+            //vari√°vel winner √© salva com o valor do vencedor
             *winner = table[1][1];
             return true;
     }
 
-    //verifica se ainda h· espaÁos vazios no tabuleiro, caso ainda tenha ele retorna falso para buscar novas inserÁıes
+    //verifica se ainda h√° espa√ßos vazios no tabuleiro, caso ainda tenha ele retorna falso para buscar novas inser√ß√µes
     for(int k = 0; k < LC; k++) {
         for(int w = 0; w < LC; w++) {
             if(table[k][w] == ' ')
@@ -71,24 +71,24 @@ bool verifyWinner(char table[LC][LC], char *winner) //retorna true => fim de jog
         }
     }
 
-    //caso n„o entre em nenhum dos casos acima, n„o houve vencedor e n„o h· espaÁo vago no tabuleiro, logo o jogo deu velha
+    //caso n√£o entre em nenhum dos casos acima, n√£o houve vencedor e n√£o h√° espa√ßo vago no tabuleiro, logo o jogo deu velha
     *winner = 'V';
     return true;
 }
 
 char verifyValueChar(char lastValue)
 {
-    //declaraÁ„o de vari·veis
+    //declara√ß√£o de vari√°veis
     char insertValue;
     bool verified = false;
-    //repete enquanto o caractere inserido foi inv·lido
+    //repete enquanto o caractere inserido foi inv√°lido
     do {
         printf("Digite seu caractere [X ou O]: ");
         scanf(" %c",&insertValue);
 
-        //verifica se o caractere È X ou O, caso n„o seja acusa erro
+        //verifica se o caractere √© X ou O, caso n√£o seja acusa erro
         if(insertValue == 'X' || insertValue == 'O')
-            if(insertValue != lastValue) //verifica se o valor insere È diferente do ˙ltimo inserido, caso seja igual acusa erro
+            if(insertValue != lastValue) //verifica se o valor insere √© diferente do √∫ltimo inserido, caso seja igual acusa erro
                 verified = true;
             else {
                 printf("ERRO: CARACTERE INSERIDO ANTERIORMENTE\n");
@@ -96,41 +96,41 @@ char verifyValueChar(char lastValue)
         else
             printf("ERRO: CARACTERE INVALIDO\n");
     }while(!verified);
-    return insertValue; //retorna valor apÛs ser validado
+    return insertValue; //retorna valor ap√≥s ser validado
 }
 
 void verifyValueLC(char table[LC][LC], int *line, int *column)
 {
-    //declaraÁ„o de vari·veis
+    //declara√ß√£o de vari√°veis
     bool validLine, validColumn, validLC;
-    //repete o cÛdigo atÈ ter linha e coluna v·lida
+    //repete o c√≥digo at√© ter linha e coluna v√°lida
     while(!validLC) {
         validLine = false, validColumn = false;
-        //verificaÁ„o se a linha est· valida
+        //verifica√ß√£o se a linha est√° valida
         while (!validLine){
             printf("Digite a linha escolhida [1 a 3]: ");
             scanf("%d",&*line);
 
-            //linha tem que estar entre 1 e 3, caso contr·rio acusa erro
+            //linha tem que estar entre 1 e 3, caso contr√°rio acusa erro
             if(*line < 1 || *line > 3) {
                 printf("ERRO: LINHA INSERIDA INVALIDA\n");
                 continue;
             } else {validLine = true;}
         }
 
-        //verificaÁ„o se a coluna ser· v·lida
+        //verifica√ß√£o se a coluna ser√° v√°lida
         while(!validColumn) {
             printf("Digite a coluna escolhida [1 a 3]: ");
             scanf("%d",&*column);
 
-            //coluna tem que ser entre 1 e 3, caso contr·rio acusa erro
+            //coluna tem que ser entre 1 e 3, caso contr√°rio acusa erro
             if(*column < 1 || *column > 3) {
                 printf("ERRO: COLUNA INSERIDA INVALIDA\n");
                 continue;
             } else {validColumn = true;}
         }
 
-        //verifica se a linha e coluna j· est· preenchida, caso esteja pede nova linha e nova coluna
+        //verifica se a linha e coluna j√° est√° preenchida, caso esteja pede nova linha e nova coluna
         if(table[*line-1][*column-1] != ' ') {
             printf("ERRO: POSICAO JA PREENCHIDA ANTERIORMENTE\n");
             continue;
@@ -140,7 +140,7 @@ void verifyValueLC(char table[LC][LC], int *line, int *column)
 
 int main()
 {
-    //declaraÁ„o de vari·veis
+    //declara√ß√£o de vari√°veis
     char table[LC][LC], lastValue = ' ', insertValue = ' ', winner = ' ';
     int line, column;
     bool endGame = false;
@@ -154,11 +154,11 @@ int main()
 
 
     do {
-        //chama funÁ„o de printar a tabela
+        //chama fun√ß√£o de printar a tabela
         printTable(table);
-        //inserir valor com consistÍncia
+        //inserir valor com consist√™ncia
         insertValue = verifyValueChar(insertValue);
-        //insere na tabela com consistÍncia
+        //insere na tabela com consist√™ncia
         verifyValueLC(table, &line, &column);
         table[line-1][column-1] = insertValue;
         //verifica se teve ganhador
